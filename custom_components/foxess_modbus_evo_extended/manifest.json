@@ -1,12 +1,12 @@
 {
-  "domain": "foxess_modbus_evo",
-  "name": "FoxESS - Modbus (EVO)",
+  "domain": "foxess_modbus_evo_extended",
+  "name": "FoxESS - Modbus (EVO) Extended",
   "codeowners": ["@MrOnionsOnions"],
   "config_flow": true,
   "dependencies": ["energy", "integration", "logbook"],
-  "documentation": "https://github.com/mronionsonions/foxess_modbus_EVO",
+  "documentation": "https://github.com/mronionsonions/foxess_modbus_EVO_extended",
   "integration_type": "service",
   "iot_class": "local_push",
-  "issue_tracker": "https://github.com/mronionsonions/foxess_modbus_EVO/issues",
-  "version": "0.0.0"
+  "issue_tracker": "https://github.com/mronionsonions/foxess_modbus_EVO_extended/issues",
+  "version": "0.0.1"
 }
