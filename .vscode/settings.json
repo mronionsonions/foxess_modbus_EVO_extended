@@ -16,7 +16,7 @@
     120 // Matches ruff config
   ],
   "files.trimTrailingWhitespace": true,
-  "mypy.targets": ["custom_components/foxess_modbus"],
+  "mypy.targets": ["custom_components/foxess_modbus_evo_extended"],
   "python.testing.pytestArgs": ["tests"],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
@@ -29,6 +29,6 @@
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "python.analysis.extraPaths": [
-    "./custom_components/foxess_modbus/vendor/pymodbus/pymodbus-3.6.9"
+    "./custom_components/foxess_modbus_evo_extended/vendor/pymodbus/pymodbus-3.6.9"
   ]
 }

@@ -10,7 +10,7 @@ warn_unused_ignores = true
 namespace_packages = true
 explicit_package_bases = true
 exclude = [
-    'custom_components/foxess_modbus_evo/vendor',
+    'custom_components/foxess_modbus_evo_extended/vendor',
 ]
 
 [[tool.mypy.overrides]]
@@ -18,7 +18,7 @@ module = 'serial.*'
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = 'custom_components/foxess_modbus_evo/vendor*'
+module = 'custom_components.foxess_modbus_evo_extended.vendor.*'
 follow_imports = 'skip'
 
 [tool.ruff]
@@ -37,7 +37,7 @@ lint.unfixable = [
 ]
 line-length = 120
 extend-exclude = [
-    'custom_components/foxess_modbus_evo/vendor',
+    'custom_components/foxess_modbus_evo_extended/vendor',
 ]
 
 [tool.ruff.lint.isort]
