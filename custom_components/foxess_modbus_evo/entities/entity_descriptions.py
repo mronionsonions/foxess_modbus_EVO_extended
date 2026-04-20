@@ -2766,6 +2766,96 @@ def _configuration_entities() -> Iterable[EntityFactory]:
         validate=[Range(0, 100)],
     )
 
+def _battery_warmup_entities() -> Iterable[EntityFactory]:
+    """Battery warm‑up control and status registers (EVO only)."""
+
+    # ----- Writeable Controls -----
+    # Enable switch (U16, 0/1)
+    yield ModbusNumberDescription(  # Using NumberDescription as a switch-like control
+        key="bms_warm_up_enable",
+        address=[
+            ModbusAddressSpec(holding=53400, models=Inv.EVO_10_H),
+        ],
+        name="BMS Warm Up Enable",
+        mode=NumberMode.BOX,
+        native_min_value=0,
+        native_max_value=1,
+        native_step=1,
+        icon="mdi:heat-wave",
+        validate=[Range(0, 1)],
+    )
+
+    # Start Temperature (I16, °C)
+    yield ModbusNumberDescription(
+        key="bms_warm_up_start_temp",
+        address=[
+            ModbusAddressSpec(holding=53401, models=Inv.EVO_10_H),
+        ],
+        name="BMS Warm Up Start Temp",
+        mode=NumberMode.BOX,
+        device_class=NumberDeviceClass.TEMPERATURE,
+        native_min_value=-20,
+        native_max_value=30,
+        native_step=1,
+        native_unit_of_measurement="°C",
+        validate=[Range(-20, 30)],
+    )
+
+    # Stop Temperature (I16, °C)
+    yield ModbusNumberDescription(
+        key="bms_warm_up_stop_temp",
+        address=[
+            ModbusAddressSpec(holding=53402, models=Inv.EVO_10_H),
+        ],
+        name="BMS Warm Up Stop Temp",
+        mode=NumberMode.BOX,
+        device_class=NumberDeviceClass.TEMPERATURE,
+        native_min_value=-10,
+        native_max_value=40,
+        native_step=1,
+        native_unit_of_measurement="°C",
+        validate=[Range(-10, 40)],
+    )
+
+    # ----- Read‑Only Sensors -----
+    # Raw status register (53414) – we'll decode it in a template sensor later,
+    # but also expose the raw value for advanced use.
+    yield ModbusSensorDescription(
+        key="bms_warm_up_status_raw",
+        addresses=[
+            ModbusAddressesSpec(holding=[53414], models=Inv.EVO_10_H),
+        ],
+        name="BMS Warm Up Status Raw",
+        state_class=SensorStateClass.MEASUREMENT,
+        icon="mdi:information-outline",
+        signed=False,
+        validate=[Min(0)],
+    )
+
+    # BMS Start Temperature Range (RO, packed high/low bytes)
+    yield ModbusSensorDescription(
+        key="bms_warm_up_start_range_raw",
+        addresses=[
+            ModbusAddressesSpec(holding=[53412], models=Inv.EVO_10_H),
+        ],
+        name="BMS Warm Up Start Range Raw",
+        state_class=SensorStateClass.MEASUREMENT,
+        icon="mdi:thermometer",
+        signed=True,
+    )
+
+    # BMS Stop Temperature Range (RO, packed high/low bytes)
+    yield ModbusSensorDescription(
+        key="bms_warm_up_stop_range_raw",
+        addresses=[
+            ModbusAddressesSpec(holding=[53413], models=Inv.EVO_10_H),
+        ],
+        name="BMS Warm Up Stop Range Raw",
+        state_class=SensorStateClass.MEASUREMENT,
+        icon="mdi:thermometer",
+        signed=True,
+    )
+
 
 ENTITIES: list[EntityFactory] = sorted(
     itertools.chain(
@@ -2776,6 +2866,7 @@ ENTITIES: list[EntityFactory] = sorted(
         _inverter_entities(),
         _bms_entities(),
         _configuration_entities(),
+        _battery_warmup_entities(),
         (description for x in CHARGE_PERIODS for description in x.entity_descriptions),
         REMOTE_CONTROL_DESCRIPTION.entity_descriptions,
     ),
