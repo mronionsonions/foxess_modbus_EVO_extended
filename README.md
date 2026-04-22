@@ -7,11 +7,11 @@
 
 ## About
 
-This is a fork of [nathanmarlor/foxess_modbus](https://github.com/nathanmarlor/foxess_modbus) — a Home Assistant custom component for communicating with FoxESS inverters locally via Modbus, without relying on FoxESS's cloud.
+This is a fork of [adamnewberry/foxess_modbus_evo](https://github.com/adamnewberry/foxess_modbus_evo) which is itself a fork of [nathanmarlor/foxess_modbus](https://github.com/nathanmarlor/foxess_modbus) — a Home Assistant custom component for communicating with FoxESS inverters locally via Modbus, without relying on FoxESS's cloud.
 
-This fork adds support for the **FoxESS EVO** series of inverters, which are not yet supported upstream.
+This fork adds further features support (battery warming) for the **FoxESS EVO** series of inverters, which are not yet supported upstream.  
 
-> **Credit:** Huge thanks to [nathanmarlor](https://github.com/nathanmarlor) and all contributors to the original [foxess_modbus](https://github.com/nathanmarlor/foxess_modbus) project. This fork builds on their excellent work.
+> **Credit:** Huge thanks to [nathanmarlor](https://github.com/nathanmarlor), Adam Newberry and all contributors to the original [foxess_modbus](https://github.com/nathanmarlor/foxess_modbus) project and the updated EVO project. This fork builds on their excellent work.
 
 ## Supported Models
 
@@ -39,15 +39,15 @@ This integration is installed as a **HACS custom repository** (it is not in the 
 
 1. Open HACS in Home Assistant
 2. Click the three dots menu (top right) > **Custom repositories**
-3. Add this URL: `https://github.com/AdamNewberry/foxess_modbus_EVO`
+3. Add this URL: `https://github.com/mronionsonions/foxess_modbus_EVO_extended`
 4. Category: **Integration**
-5. Click **Add**, then find "FoxESS - Modbus (EVO)" and download it
+5. Click **Add**, then find "FoxESS - Modbus (EVO) Extended" and download it
 6. Restart Home Assistant
 7. Go to **Settings > Devices & Services > Add Integration**
-8. Search for "FoxESS - Modbus (EVO)"
+8. Search for "FoxESS - Modbus (EVO) Extended"
 9. Follow the configuration wizard
 
-> **Note:** If you have the original `foxess_modbus` integration installed, this fork uses a different domain (`foxess_modbus_evo`) so they will not conflict. However, running both simultaneously against the same inverter is not recommended.
+> **Note:** If you have the original `foxess_modbus` integration or EVO version  installed, this fork uses a different domain (`foxess_modbus_evo_extended`) so they will not conflict. However, running both simultaneously against the same inverter is not recommended.
 
 ## Usage
 
@@ -89,7 +89,7 @@ Sets all charge periods in one service call.
 
 For adapter setup guides, wiring instructions, and FAQs, see the [upstream wiki](https://github.com/nathanmarlor/foxess_modbus/wiki). Most of the documentation there applies to this fork as well.
 
-For EVO-specific issues, please [open an issue](https://github.com/AdamNewberry/foxess_modbus_EVO/issues) on this repository.
+For EVO-specific issues, please [open an issue](https://github.com/AdamNewberry/foxess_modbus_EVO_Extended/issues) on this repository.
 
 ---
 
